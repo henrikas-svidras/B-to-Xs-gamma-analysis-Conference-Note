@@ -1,0 +1,50 @@
+\section{Analysis overview}\label{sec:analysis_flow}
+
+A sample of tagged $B$ mesons is first reconstructed in their hadronic decays, and a high-energy photon from the other $B$ meson is selected. Details of the tagging algorithm are described in \Cref{sec:tag_side_reconstruction}. The selection procedures to suppress photon candidates from background processes are given in \Cref{sec:signal_side_reconstruction,sec:qqbar_selection}. They are optimised in simulation, simultaneously, by maximising the figure of merit of Ref.~\cite{Punzi}. The final best tag-candidate selection is summarised in \Cref{sec:best_tag_candidate}.
+The fitting of sample composition is described in \Cref{sec:fitting_procedure}. The procedure to remove remaining background contamination after the fit is given in \Cref{sec:post_fit}. The reconstructed \BtoXsgamma event yields in bins of \EB are unfolded (\Cref{sec:unfolding}). The corresponding uncertainties are discussed in \Cref{sec:uncertainties}. The final results of the analysis are presented in \Cref{sec:results}.
+
+The analysis is fully optimised on simulation. Control regions are used to check the background suppression validity before examining the signal region.
+
+\section{Event reconstruction and selection}\label{sec:selection}
+
+
+% The high-energy photon from the \BtoXsgamma decays, and the other \B meson, called the tag-\B meson, decaying hadronically. Background processes from $\epem\ra\qqbar$ are suppressed using a boosted decision tree (BDT). The events after selection are fitted to extract correctly-reconstructed tag counts in each event. Any leftover non-\BtoXsgamma background is subtracted using simulated expectations. 
+
+\subsection{Tag side reconstruction}\label{sec:tag_side_reconstruction}
+
+
+In each event, one $B$ meson candidate is fully reconstructed and used as a tag for the recoiling signal $B$ meson candidate. The tag-side \B meson is reconstructed using the full-event-interpretation algorithm (FEI) \cite{FEI}, which reconstructs hadronic $B$ decays from thousands of subdecay chains. The algorithm starts by combining track and ECL cluster information to reconstruct final-state candidate particles, such as electrons, muons, photons, charged pions, and kaons. In the next step, those are combined to form intermediate particles
+such as \piz, $K_S^0$, $D^{(*)}$, and \jpsi candidates. The intermediate or final-state particles are combined to form \B candidates in 36 \Bp and 32 \Bz hadronic modes. For each reconstructed \B-meson candidate, the algorithm outputs a probability-like score, \feiProb. Correctly reconstructed $B$-meson candidates have a score close to one, whereas non-$B$ and misreconstructed candidates tend to have a score close to zero.
+
+For tag-candidate reconstruction, track-quality requirements are imposed \cite{BERTACCHI2021107610}. The longitudinal distance of closest approach of each track from the detector center is required to be $|z_0|<2.0~\cm$. A similar criterion for the distance in the transverse plane, $|d_0|<0.5~\cm$ is also applied. Only charged particles with transverse momenta, $p_T$, higher than 0.1~\gevc are selected. Furthermore, an event must have at least three tracks passing these selections. Similarly, three or more isolated clusters with $17<\theta<150^{\circ}$ and $E>0.1~\gev$ are required in the ECL for each event. The total energy deposited in the ECL should be within $2$ and $7~\gev$. Only events with at least $4~\gev$ of measured energy in the Belle II detector are retained. The tag-side \B candidates are required to have $\feiProb>0.001$ and beam-constrained mass, $\Mbc>5.245~\gevcc$, defined as
+
+\begin{equation}\label{eq:mbc}
+\Mbc = \sqrt{(\sqrt{s}/2)^2 - p_{\mathrm{tag}}^2},
+\end{equation}
+
+\noindent where $\sqrt{s}$ is the collision energy and $p_{\mathrm{tag}}$ is the reconstructed momentum of the tag-candidate in the CM frame. Furthermore, a $|\Delta E|<0.2~\gev$ requirement is imposed on the energy difference, defined as 
+
+\begin{equation}
+    \Delta E = E_{\mathrm{tag}} - \sqrt{s}/2,
+\end{equation}
+
+\noindent where $E_{\mathrm{tag}}$ is the energy of the tag-candidate reconstructed in the CM frame.
+
+
+\subsection{Signal-side selection}\label{sec:signal_side_reconstruction}
+
+Using the kinematic properties of the reconstructed tag-side meson and the beam-energy constraint, the photon-candidate energy is inferred in the signal-\B meson rest-frame. All candidates in the range of $\EB>1.4~\gev$ are considered. The highest-energy photon in each event is taken as the signal-photon candidate. Studies on simulated signal events show that this selects the correct \BtoXsgamma candidate in more than 99\% of cases. Cluster-timing information, derived from a waveform fit to the signal collected in the most energetic crystal of the cluster, is associated to each photon. In order to suppress large background from out-of-time beam-background clusters or photons associated with low-quality waveform fits, the cluster timing, measured with respect to the collision time, is used. It is required neither to exceed $200~\ns$ nor twice the cluster-time uncertainty. This selection introduces about a 2\% signal efficiency loss while reducing beam background to negligible levels.
+
+The resulting sample is dominated by photon candidates originating from asymmetric $\piz\ra\g\g$ and $\eta\ra\g\g$ decays. This background is suppressed by vetoing $\pi^0$ and $\eta$ decays. Signal-photon candidates are kinematically combined with lower-energy photons in the event and a quantitative measure of compatibility with $\piz\ra\g\g$ or $\eta\ra\g\g$ decays is associated to the combinations. The compatibility is determined using a multivariate statistical-learning algorithm that uses the diphoton invariant mass, helicity, and properties of the less-energetic photon, such as energy, polar angle, and smallest ECL cluster-to-track distance. Another statistical-learning algoritm uses Zernike moments to quantify the ECL-photon cluster shape to disentangle misidentified photons from signal clusters. The background suppression of these selections is investigated using the off-resonance data. Furthermore, samples with inverted \piz and $\eta$ suppression requirements are used to form large samples of background-like events.
+
+\subsection{Suppression of \qqbar events}\label{sec:qqbar_selection}
+
+Photon candidates from background \epem\ra\qqbar events make up most of the selected sample. A dedicated boosted-decision-tree classifier is trained to suppress these events. The training is performed on randomly selected sets of $10^5$ simulated \qqbar events and $10^5$ simulated \BtoXsgamma events that pass the requirements described in \Cref{sec:tag_side_reconstruction,sec:signal_side_reconstruction}. The input features for the classifier are tag-side \B kinematic parameters, such as modified Fox-Wolfram moments~\cite{KSFW_moments}, \B decay vertex parameters, CLEO cones \cite{CLEO_cones}, and thrust \cite{BaBar:2014omp}. For each variable, we require minimal correlations with \EB and \Mbc in order not to bias the inclusive spectrum. Furthermore, each variable distribution in off-resonance data is compared to \epem\ra\qqbar simulation. Only those showing good data-simulation agreement are used for the training. The classifier outputs a probability score, $\mathcal{P}_{\mathrm{BDT}}$, for each event to be classified as \epem~\ra~\qqbar or \epem~\ra~\BB where one of the \B mesons decays as \BtoXsgamma. 
+
+\subsection{Best tag-side candidate selection}\label{sec:best_tag_candidate}
+
+After all the selections described in \Cref{sec:selection}, about 50\% of events have a unique tag-side candidate, based on the hybrid signal model. In 25\% of cases there are two tag-side candidates remaining, and in 10\% of cases -- three. The probability to have more than one tag-side candidate decreases sharply and is lower than 1\% for 5 or more candidates. If more than one tag-side candidate is present in an event, only the one with the highest \feiProb is retained. 
+
+\subsection{Selection efficiency}
+
+The signal efficiency is decomposed as a product of the FEI tagging efficiency and the signal-selection efficiency. Signal-selection and tagging efficiencies are calculated using the simulated hybrid model. The tagging efficiencies are calculated by comparing $B$ yields in simulation before and after the FEI algorithm is applied. After applying the FEI calibration factors of $\mathcal{C}_{B^+}=0.66 \pm 0.02$ and $\mathcal{C}_{B^0}=0.67 \pm 0.02$ for charged and neutral modes, respectively, a tagging efficiency of $(0.44\pm0.02)\%$ is found. The calibration factors account for differences in the tag-side reconstruction efficiency between data and simulation and are derived in an independent study of hadronic-tagged $B\ra X\ell\nu$ decays \cite{Belle-II:2020fst}. The signal-selection efficiency is calculated as the fraction of tagged-signal yield that meet the requirements of \Cref{sec:signal_side_reconstruction}. It increases approximately linearly from 45\% to 63\% with $\EB~\in~[1.8,2.6]~\gev$, with a total uncertainty of about 10\% in each bin. Background events from $\epem\ra\qqbar$ are suppressed by 99.5\%, while the generic $\epem\ra\BB$ background is reduced by 93\%.

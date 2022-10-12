@@ -1,0 +1,190 @@
+% \documentclass[preprint,prd,tightenlines]{revtex4}
+\documentclass[preprint,aps,prd,longbibliography,tightenlines,linenumbers,toc=flat]{revtex4-2}
+% \documentclass[letter,aps,prd,twocolumn,superscriptaddress,showpacs,preprintnumbers,amsmath,amssymb,nofootinbib,linenumbers]{revtex4-1}
+
+\usepackage{graphicx} % Include figure files
+\usepackage{dcolumn}  % Align table columns on decimal point
+\usepackage{colordvi}
+\usepackage{color}
+\usepackage{epstopdf}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+\graphicspath{{ps}}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{makecell}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{tabularx, ragged2e} 
+\usepackage{adjustbox}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{listings}
+
+\usepackage{cleveref}
+\captionsetup{justification=raggedright,singlelinecheck=false}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.8}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\scriptsize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,%or left                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+\lstset{style=mystyle}
+
+\usepackage{adjustbox}
+
+\renewcommand{\arraystretch}{1.1}
+
+\usepackage{titlesec}
+\titlespacing*{\subsection}{0pt}{1.1\baselineskip}{\baselineskip}
+\titlespacing*{\section}{0pt}{1.1\baselineskip}{\baselineskip}
+\setlength{\parskip}{0pt} 
+
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\small\bfseries}
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+\makeatletter
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+\renewcommand{\p@subsubsection}{\thesubsection.}
+\renewcommand{\p@subsection}{}
+\renewcommand{\@seccntformat}[1]{%
+  \csname the#1\endcsname
+  \ifnum\pdfstrcmp{#1}{subsubsection}=0 .\fi% If this is a subsubsection, add a period
+  \quad}
+\makeatother
+
+\input belle2sym.tex
+\def\efftp{\ensuremath{\epsilon_{\text{T}\&\text{P}}\xspace}}
+\def\bgrvec{\ensuremath{\mathbf{bgr.}\xspace}}
+
+\def\cvec{\ensuremath{\mathbf{C}\xspace\ }}
+\def\yvec{\ensuremath{\mathbf{Y}\xspace\ }}
+\def\dvec{\ensuremath{\mathbf{D}\xspace\ }}
+\def\bvec{\ensuremath{\mathbf{B}\xspace\ }}
+\def\pvec{\ensuremath{\mathbf{P}\xspace\ }}
+\def\tvec{\ensuremath{\mathbf{T}\xspace\ }}
+\def\esel{\ensuremath{\mathfrak{e}}}
+\def\epi{\ensuremath{e}}
+\def\fpimu{\ensuremath{f}}
+\def\fmupi{\ensuremath{\mathfrak{f}}}
+\def\fpio{\ensuremath{\phi}}
+\def\XXX{\textcolor{red}{XXX}}
+
+
+
+\def\bbb{\ensuremath{B\bar{B}\xspace}}
+\def\dbbb{\ensuremath{\delta B\bar{B}\xspace}}
+
+\def\eff{\ensuremath{\epsilon\xspace}}
+\def\deff{\ensuremath{\delta \epsilon\xspace}}
+\def\effmc{\ensuremath{\epsilon_{\text{MC}}\xspace}}
+\def\deffmc{\ensuremath{\delta \epsilon_{\text{MC}}\xspace}}
+
+\def\bbbmc{\ensuremath{B\bar{B}_{\text{MC}}\xspace}}
+\def\dbbbmc{\ensuremath{\delta B\bar{B}_{\text{MC}}\xspace}}
+
+\def\bf{\ensuremath{\mathcal{B}\xspace}}
+
+\def\nbb{\ensuremath{N^{B\bar{B}}\xspace}}
+\def\dnbb{\ensuremath{\delta N^{B\bar{B}}\xspace}}
+\def\nbbdt{\ensuremath{ N^{B\bar{B}}_{\text{meas.}}\xspace}}
+
+
+\def\ncont{\ensuremath{N^{\text{off res.}}\xspace}}
+
+\def\ncontdt{\ensuremath{N^{\text{off res.}}_{\text{observed}}\xspace}}
+
+
+\def\ors{\ensuremath{\frac{\mathcal{L}^{\text{on res.}}}{{\mathcal{L}^{\text{off res.}}}}\xspace}}
+
+\begin{document}
+
+%place for definitions and newcommands
+\def\belletwo {\it {Belle II}}
+
+
+
+\vspace*{-3\baselineskip}
+\resizebox{!}{3cm}{\includegraphics{belle2-logo.pdf}}
+
+\vspace*{-5\baselineskip}
+\begin{flushright}
+BELLE2-CONF-2022-018\\
+\today
+\end{flushright}
+
+
+\title {\quad\\[0.5cm] Measurement of the photon-energy spectrum in inclusive \BtoXsgamma decays identified using hadronic decays of the recoil $B$ meson in 2019–2021 Belle II data}
+
+
+
+\input{authors-conf2022-plain}
+
+% \collaboration{The Belle II Collaboration}
+% \noaffiliation
+
+\begin{abstract}
+%\centering
+% This note describes measurement of inclusive hadronic-tagged $\B\to X_s\gamma$ decays.
+
+We measure the photon-energy spectrum in radiative bottom-meson ($B$) decays into inclusive final states involving a strange hadron and a photon. We use SuperKEKB electron-positron collisions corresponding to $189~\invfb$ of integrated luminosity collected at the \FourS resonance by the Belle II experiment. The partner \B candidates are fully reconstructed using a large number of hadronic channels. The \BtoXsgamma partial branching fractions are measured as a function of photon energy in the signal $B$ meson rest frame in eight bins above 1.8 GeV. The background-subtracted signal yield for this photon energy region is $343 \pm 122$ events. Integrated branching fractions for three photon energy thresholds of $1.8~\gev$, $2.0~\gev$, and $2.1~\gev$ are also reported, and found to be in agreement with world averages.
+
+% \keywords{Belle II, Moriond 2021}
+\end{abstract}
+
+% \pacs{}
+
+\maketitle
+
+{\renewcommand{\thefootnote}{\fnsymbol{footnote}}}
+\setcounter{footnote}{0}
+
+\clearpage
+\input{introduction/introduction}
+
+\input{detector/detector}
+
+
+\input{event_selection/event_selection}
+
+\input{fitting/fitting}
+
+
+\input{results/results}
+
+\input{conclusion/conclusion}
+
+\input{acknowledgements/acknowledgements}
+
+\bibliographystyle{JHEP}
+\bibliography{references}
+
+\end{document}
+
